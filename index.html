@@ -435,6 +435,10 @@
                     category.fields.forEach(field => {
                         const fieldCard = document.createElement('div');
                         fieldCard.className = `bg-gradient-to-r from-${field.color}-50 to-${field.color}-100 border border-${field.color}-200 rounded-xl p-4 hover:shadow-md transition-all duration-300 transform hover:-translate-y-1`;
+                        
+                        // Check if the field value is a URL (contains http or https)
+                        const isUrl = field.value && (field.value.includes('http://') || field.value.includes('https://'));
+                        
                         fieldCard.innerHTML = `
                             <div class="flex items-start">
                                 <div class="flex-shrink-0 w-10 h-10 bg-${field.color}-500 rounded-lg flex items-center justify-center text-white text-lg ml-3">
@@ -442,7 +446,18 @@
                                 </div>
                                 <div class="flex-1 min-w-0">
                                     <p class="text-sm font-medium text-${field.color}-800 mb-1">${field.key}</p>
-                                    <p class="text-lg font-semibold text-gray-900 break-words">${field.value}</p>
+                                    ${isUrl ? 
+                                        `<div class="space-y-2">
+                                            <p class="text-sm text-gray-600 break-all">${field.value}</p>
+                                            <a href="${field.value}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-blue-600 hover:text-blue-800 font-semibold underline cursor-pointer transition-colors duration-200">
+                                                ${field.key.includes('نور') ? 'فتح منصة نور' : 'فتح الرابط'}
+                                                <svg class="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 24 24">
+                                                    <path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/>
+                                                </svg>
+                                            </a>
+                                        </div>` : 
+                                        `<p class="text-lg font-semibold text-gray-900 break-words">${field.value}</p>`
+                                    }
                                 </div>
                             </div>
                         `;
@@ -656,5 +671,5 @@
             });
         }
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'982106b3f34a1276',t:'MTc1ODM2ODE5OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98211928c7da4e98',t:'MTc1ODM2ODk1NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
